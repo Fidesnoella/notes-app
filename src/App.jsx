@@ -10,6 +10,7 @@ export default function App() {
 
   const [notes, setNotes] = useState(() => JSON.parse(localStorage.getItem('notes')) || [])
 
+
   const [currentNoteId, setCurrentNoteId] = useState(
     (notes[0] && notes[0].id) || ""
   )
@@ -28,11 +29,18 @@ export default function App() {
   }
 
   function updateNote(text) {
-    setNotes(oldNotes => oldNotes.map(oldNote => {
-      return oldNote.id === currentNoteId
-        ? { ...oldNote, body: text }
-        : oldNote
-    }))
+    setNotes(oldNotes => {
+      const newArray = []
+      for (let i = 0; i < oldNotes.length; i++) {
+        const oldNote = oldNotes[i]
+        if (oldNote.id === currentNoteId) {
+          newArray.unshift({ ...oldNote, body: text })
+        } else {
+          newArray.push(oldNote)
+        }
+      }
+      return newArray
+    })
   }
   function findCurrentNote() {
     return notes.find(note => {
