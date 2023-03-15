@@ -1,3 +1,4 @@
+import { BsFillTrashFill } from "react-icons/bs";
 
 export default function Sidebar(props) {
 
@@ -8,6 +9,12 @@ export default function Sidebar(props) {
                 <h4 className="text-snippet">
                     {(note.body.split("\n")[0]).split("#").at(-1)}
                 </h4>
+                <button
+                    className="delete-btn"
+                    onClick={(event) => props.deleteNote(event, note.id)}
+                >
+                    <BsFillTrashFill />
+                </button>
             </div>
         </div>
     ))
