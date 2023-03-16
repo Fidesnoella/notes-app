@@ -12,7 +12,7 @@ export default function App() {
 
 
   const [currentNoteId, setCurrentNoteId] = useState(
-    (notes[0] && notes[0].id) || ""
+    notes[0] ? notes[0].id : ""
   )
 
   useEffect(() => {
