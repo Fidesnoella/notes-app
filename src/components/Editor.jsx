@@ -20,9 +20,6 @@ export default function Editor({ currentNote, updateNote }) {
                 onChange={updateNote}
                 selectedTab={selectedTab}
                 onTabChange={setSelectedTab}
-                // generateMarkdownPreview={(markdown) =>
-                //     Promise.resolve(converter.makeHtml(markdown))
-                // }
                 generateMarkdownPreview={async markdown => {
                     const html = await new Promise(resolve => { resolve(converter.makeHtml(markdown)) })
                     return html;
